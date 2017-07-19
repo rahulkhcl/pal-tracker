@@ -34,7 +34,7 @@ public class TimeEntriesControllerTest {
         timeEntryRepository = mock(TimeEntryRepository.class);
         counterService = mock(CounterService.class);
         gaugeService = mock(GaugeService.class);
-        controller = new TimeEntriesController(timeEntryRepository);
+        controller = new TimeEntriesController(timeEntryRepository, counterService, gaugeService);
     }
 
     @Test
