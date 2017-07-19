@@ -15,6 +15,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import org.mariadb.jdbc.MariaDbDataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.junit.Before;
+
+import javax.sql.DataSource;
 import java.util.Collection;
 
 import static com.jayway.jsonpath.JsonPath.parse;
@@ -26,6 +31,14 @@ public class PalTrackerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @Before
+    public void setUp() throws Exception {
+        DataSource dataSource = new MariaDbDataSource(System.getenv("SPRING_DATASOURCE_URL"));
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.execute("TRUNCATE time_entries");
+    }
 
     @Test
     public void crudTest() throws Exception {
