@@ -3,4 +3,5 @@ applications:
 - name: pal-tracker-production
   path: ../../build/libs/pal-tracker.jar
   host: rk-pal-tracker-production
-SECURITY_FORCE_HTTPS: True
+  env:
+    SECURITY_FORCE_HTTPS: true
